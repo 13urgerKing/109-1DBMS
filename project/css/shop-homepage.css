@@ -10,8 +10,14 @@ body {
   background-color: #16202d;
   color: #acb2b8;
 }
+.card:hover{
+  background-color: #101822;
+}
 .card a{
   color: #ffffff;
+}
+.card a:hover{
+  text-decoration:none;
 }
 .list-group{
   margin-top: 1.5rem!important;
@@ -20,4 +26,20 @@ body {
   background-color: #1b2838;
   border-color: #323e4c;
   color: #9fbbcb;
+}
+.list-group-item:hover{
+  color: #323e4c;
+  text-decoration:none;
+}
+.container{
+  max-width: 90%;
+}
+.carousel-item img{
+  width: 100%;
+}
+.nav-link{
+  font-size: 32px;
+}
+.login{
+  color: #cdb75f!important;
 }
