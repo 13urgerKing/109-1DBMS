@@ -1,6 +1,5 @@
 CREATE DATABASE gamlabdb;
 USE gamlabdb;
-
 CREATE TABLE User (
   User_No varchar(5) NOT NULL,
   ID varchar(30) NOT NULL,
@@ -31,8 +30,8 @@ CREATE TABLE Buyer (
 CREATE TABLE Coupon (
   Coupon_No varchar(5) NOT NULL,
   User_No varchar(5) NOT NULL,
-  Discount_type INT NOT NULL,
-  Discount_amount INT NOT NULL,
+  Type INT NOT NULL,
+  Amount INT NOT NULL,
   Expiry_date DATE NOT NULL,
   PRIMARY KEY(Coupon_No)
   /*FOREIGN KEY (User_No) REFERENCES User(User_No)*/
@@ -40,21 +39,31 @@ CREATE TABLE Coupon (
 
 CREATE TABLE Game (
   Game_No varchar(5) NOT NULL,
-  Seller_No varchar(5) NOT NULL,
+  User_No varchar(5) NOT NULL,
   Price INT NOT NULL,
   Sales_volume INT NOT NULL,
   Category varchar(10) NOT NULL,
   Name varchar(50) NOT NULL,
   Description varchar(500) NOT NULL,
   PRIMARY KEY(Game_No)
+  /*FOREIGN KEY (User_No) REFERENCES User(User_No)*/
+);
+
+CREATE TABLE Order_info (
+  User_No varchar(5) NOT NULL,
+  Order_No varchar(5) NOT NULL,
+  Coupon_No varchar(5) NOT NULL,
+  Date DATE NOT NULL,
+  Price INT NOT NULL,
+  PRIMARY KEY(Order_No)
+  /*FOREIGN KEY (Game_No) REFERENCES Game(Game_No)*/
+  /*FOREIGN KEY (Coupon_No) REFERENCES Coupon(Coupon_No)*/
 );
 
 CREATE TABLE Order_list (
-  User_No varchar(5) NOT NULL,
   Order_No varchar(5) NOT NULL,
-  Game_No varchar(5) NOT NULL,
-  Purchase_date DATE NOT NULL
-  /*FOREIGN KEY (Game_No) REFERENCES Game(Game_No)*/
+  Game_No varchar(5) NOT NULL
+   /*FOREIGN KEY (Game_No) REFERENCES Game(Game_No)*/
 );
 
 CREATE TABLE User_Comment (
