@@ -1,0 +1,23 @@
+/*!
+ * Start Bootstrap - Shop Homepage (https://startbootstrap.com/template/shop-homepage)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-homepage/blob/master/LICENSE)
+ */
+body {
+  background-color: #1b2838;
+}
+.card {
+  background-color: #16202d;
+  color: #acb2b8;
+}
+.card a{
+  color: #ffffff;
+}
+.list-group{
+  margin-top: 1.5rem!important;
+}
+.list-group-item{
+  background-color: #1b2838;
+  border-color: #323e4c;
+  color: #9fbbcb;
+}
