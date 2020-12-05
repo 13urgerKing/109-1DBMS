@@ -7,7 +7,7 @@ CREATE TABLE User (
   Password varchar(30) NOT NULL,
   Email varchar(50) NOT NULL,
   Name varchar(10) NOT NULL,
-  Birthday varchar(8) NOT NULL,
+  Birthday DATE NOT NULL,
   Phone_No varchar(10) NOT NULL,
   Gender varchar(1) NULL,
   PRIMARY KEY(User_No)
@@ -33,13 +33,14 @@ CREATE TABLE Coupon (
   User_No varchar(5) NOT NULL,
   Discount_type INT NOT NULL,
   Discount_amount INT NOT NULL,
-  Expiry_date DATETIME NOT NULL,
+  Expiry_date DATE NOT NULL,
   PRIMARY KEY(Coupon_No)
   /*FOREIGN KEY (User_No) REFERENCES User(User_No)*/
 );
 
 CREATE TABLE Game (
   Game_No varchar(5) NOT NULL,
+  Seller_No varchar(5) NOT NULL,
   Price INT NOT NULL,
   Sales_volume INT NOT NULL,
   Category varchar(10) NOT NULL,
@@ -52,7 +53,7 @@ CREATE TABLE Order_list (
   User_No varchar(5) NOT NULL,
   Order_No varchar(5) NOT NULL,
   Game_No varchar(5) NOT NULL,
-  Purchase_date DATETIME NOT NULL
+  Purchase_date DATE NOT NULL
   /*FOREIGN KEY (Game_No) REFERENCES Game(Game_No)*/
 );
 
