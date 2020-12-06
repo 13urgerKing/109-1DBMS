@@ -1,4 +1,15 @@
-(function ($) {
+$(document).ready(function(){
+    $.ajax({
+        type: "POST",
+        url: "../project/php/db.php",
+        dataType: "json",
+        data: {function: 'connect'},
+        success: function(data){
+            console.log(data);
+        }
+    });
+});
+(function ($){
     "use strict";
 
     var input = $('.validate-input .input100');
@@ -7,13 +18,12 @@
 
     $('.validate-form').on('submit',function(){
         var check = true;
-        for(var i=0; i<input.length; i++) {
+        for(var i=0; i<input.length; i++){
             if(!validate(input[i])){
                 showValidate(input[i]);
                 check=false;
             }
         }
-
         return check;
     });
 
@@ -24,9 +34,9 @@
         });
     });
 
-    function validate (input) {
-        if($(input).attr('name') == 'email') {
-            if($(input).val().trim().match(/^[a-zA-Z0-9_-]+@[a-zA-Z0-9]+\.[a-zA-Z]+$/) == null) {
+    function validate (input){
+        if($(input).attr('name') == 'email'){
+            if($(input).val().trim().match(/^[a-zA-Z0-9_-]+@[a-zA-Z0-9]+\.[a-zA-Z]+$/) == null){
                 mailvalidate = false;
                 return false;
             }
@@ -38,19 +48,19 @@
         return true;
     }
 
-    function showValidate(input) {
+    function showValidate(input){
         var thisAlert = $(input).parent();
         $(thisAlert).addClass('alert-validate');
     }
 
-    function hideValidate(input) {
-        if($(input).attr('name') == 'email' && !mailvalidate) {
+    function hideValidate(input){
+        if($(input).attr('name') == 'email' && !mailvalidate){
             input.value = '';
             mailvalidate = true
             var thisAlert = $(input).parent();
             $(thisAlert).removeClass('alert-validate');
         }
-        if($(input).attr('name') == 'pass' && !passvalidate) {
+        if($(input).attr('name') == 'pass' && !passvalidate){
             input.value = '';
             passvalidate = true
             var thisAlert = $(input).parent();
