@@ -1,16 +1,5 @@
-$(document).ready(function(){
-    $.ajax({
-        type: "POST",
-        url: "../project/php/db.php",
-        dataType: "json",
-        data: {function: 'connect'},
-        success: function(data){
-            console.log(data);
-        }
-    });
-});
 (function ($){
-    "use strict";
+    'use strict';
 
     var input = $('.validate-input .input100');
     var mailvalidate = true;
@@ -18,11 +7,32 @@ $(document).ready(function(){
 
     $('.validate-form').on('submit',function(){
         var check = true;
+        var msg='';
         for(var i=0; i<input.length; i++){
             if(!validate(input[i])){
                 showValidate(input[i]);
                 check=false;
             }
+        }
+        if(check){
+            $.ajax({
+                type: 'POST',
+                async: false,
+                url: '../Project/php/db.php',
+                dataType: 'json',
+                data: {request: 'login', email: $(input[0]).val(), password: $(input[1]).val()},
+                success: function(data){
+                    msg=data.msg;
+                }
+            });
+        }
+        if(msg=='success'){
+            alert('登入成功!');
+            check=true;
+        }
+        else{
+            alert('帳號或密碼錯誤!');
+            check=false;
         }
         return check;
     });
