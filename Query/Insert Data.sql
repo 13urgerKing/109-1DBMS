@@ -1,7 +1,4 @@
 USE gamlabdb;
-INSERT INTO User( User_No, Email, Password, Name, Birthday, Phone_No, Gender )
+INSERT INTO gamlab_user( User_No, Email, Password, Name, Birthday, Phone_No, Gender )
                        VALUES
                        ( '00001', 'admin@gamlab.com', 'admin', 'gamlab', '2021-01-01', '0912345678','M' );
-INSERT INTO User( User_No, Email, Password, Name, Birthday, Phone_No, Gender )
-                       VALUES
-                       ( '00002', 'larry@gamlab.com', 'larry', 'Larry', '1999-12-01', '0923456789','M' );
