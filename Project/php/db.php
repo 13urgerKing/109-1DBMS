@@ -1,5 +1,6 @@
 <?php
     header('Content-Type: application/json; charset=UTF-8');
+    session_start();
     if ($_SERVER['REQUEST_METHOD'] == "POST"){
         $req = $_POST['request'];
         if ($req == 'login'){
@@ -11,16 +12,15 @@
             $result = $conn -> query("SELECT * FROM gamlab_user WHERE Email='$email' AND Password='$password'");
             if($result->num_rows > 0){
                 $msg='success';
+                $result = $result->fetch_assoc();
+                $_SESSION['userid'] = $result['Email'];
             }
             else{
-                $msg='failed';   
+                $msg='failed';
+                $result = null;
             }
             $conn -> close();
             echo json_encode(array('msg' => $msg));
-            // while ($row = $result->fetch_assoc()){
-            //     $output[] = $row;
-            // }
-            // echo json_encode(array('msg' => $output));
         }
     }
 ?>

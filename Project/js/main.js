@@ -1,13 +1,13 @@
 (function ($){
     'use strict';
-
     var input = $('.validate-input .input100');
     var mailvalidate = true;
     var passvalidate = true;
 
     $('.validate-form').on('submit',function(){
         var check = true;
-        var msg='';
+        var msg = null;
+        var result = null;
         for(var i=0; i<input.length; i++){
             if(!validate(input[i])){
                 showValidate(input[i]);
@@ -28,13 +28,12 @@
         }
         if(msg=='success'){
             alert('登入成功!');
-            check=true;
+            document.location.href='../project/Home.html';
         }
         else{
             alert('帳號或密碼錯誤!');
-            check=false;
         }
-        return check;
+        return false;
     });
 
 
@@ -43,6 +42,8 @@
             hideValidate(this);
         });
     });
+
+    
 
     function validate (input){
         if($(input).attr('name') == 'email'){

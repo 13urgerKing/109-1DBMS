@@ -8,9 +8,9 @@
   <!-- Bootstrap core CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet">
-  <link href="css/util.css" rel="stylesheet">
-	<link href="css/main.css" rel="stylesheet">
+  <link href="css/style.css?v="+new Date().getTime() rel="stylesheet">
+  <link href="css/util.css?v="+new Date().getTime() rel="stylesheet">
+	<link href="css/main.css?v="+new Date().getTime() rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	
 
@@ -33,7 +33,7 @@
           <li class="nav-item">
             <a class="nav-link" href="#">客服中心</a>
           <li class="nav-item">
-            <a class="nav-link login" href="Login.html">登入</a>
+            <a class="nav-link currentpage" href="#">登入</a>
           </li>
           </li>
         </ul>
@@ -60,7 +60,7 @@
             </div>
   
             <div class="wrap-input100 validate-input" data-validate = "請輸入正確密碼">
-              <input class="input100" name="pass" placeholder="密碼">
+              <input type="password" class="input100" name="pass" placeholder="密碼">
               <span class="focus-input100"></span>
               <span class="symbol-input100">
                 <i class="fa fa-lock" aria-hidden="true"></i>
@@ -71,12 +71,6 @@
               <button class="login100-form-btn">
                 登入
               </button>
-            </div>
-  
-            <div class="text-center p-t-12">
-              <a class="txt2" href="#">
-                忘記密碼?
-              </a>
             </div>
   
             <div class="text-center">
@@ -100,7 +94,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
-  <script src="js/main.js?t=<?=time()?>"></script>
+  <script src="js/main.js?v="+new Date().getTime()></script>
 
 </body>
 

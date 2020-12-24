@@ -1,6 +1,6 @@
 CREATE DATABASE gamlabdb;
 USE gamlabdb;
-CREATE TABLE User (
+CREATE TABLE gamlab_User (
   User_No varchar(5) NOT NULL,
   Email varchar(50) NOT NULL,
   Password varchar(30) NOT NULL,
