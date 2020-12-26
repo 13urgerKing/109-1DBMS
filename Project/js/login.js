@@ -7,7 +7,6 @@
     $('.validate-form').on('submit',function(){
         var check = true;
         var msg = null;
-        var result = null;
         for(var i=0; i<input.length; i++){
             if(!validate(input[i])){
                 showValidate(input[i]);
@@ -18,7 +17,7 @@
             $.ajax({
                 type: 'POST',
                 async: false,
-                url: '../Project/php/db.php',
+                url: './php/db.php',
                 dataType: 'json',
                 data: {request: 'login', email: $(input[0]).val(), password: $(input[1]).val()},
                 success: function(data){
@@ -28,7 +27,7 @@
         }
         if(msg=='success'){
             alert('登入成功!');
-            document.location.href='../project/Home.html';
+            document.location.href='./Home.html';
         }
         else{
             alert('帳號或密碼錯誤!');
@@ -79,3 +78,7 @@
         }
     }
 })(jQuery);
+
+$("#a-Home").click(function(event){
+    document.location.href="./Home.html";
+});

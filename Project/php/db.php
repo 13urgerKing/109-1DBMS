@@ -22,5 +22,22 @@
             $conn -> close();
             echo json_encode(array('msg' => $msg));
         }
+        if($req == 'checklogin'){
+            if(isset($_SESSION['userid'])){
+                echo json_encode(array('msg' => 'login'));
+            }
+            else{
+                echo json_encode(array('msg' => 'logout'));
+            }
+        }
+        if($req == 'logout'){
+            if(isset($_SESSION['userid'])){
+                unset($_SESSION['userid']);
+                echo json_encode(array('msg' => 'success'));
+            }
+            else{
+                echo json_encode(array('msg' => 'failed'));
+            }
+        }
     }
 ?>
