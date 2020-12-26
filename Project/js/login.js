@@ -17,7 +17,7 @@
             $.ajax({
                 type: 'POST',
                 async: false,
-                url: './php/db.php',
+                url: '../Project/php/db.php',
                 dataType: 'json',
                 data: {request: 'login', email: $(input[0]).val(), password: $(input[1]).val()},
                 success: function(data){
