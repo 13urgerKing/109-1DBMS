@@ -44,6 +44,7 @@ CREATE TABLE Game (
   Category varchar(10) NOT NULL,
   Name varchar(50) NOT NULL,
   Description varchar(500) NOT NULL,
+  ImageURL varchar(20) NOT NULL,
   PRIMARY KEY(Game_No)
   /*FOREIGN KEY (User_No) REFERENCES User(User_No)*/
 );
