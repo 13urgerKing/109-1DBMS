@@ -7,14 +7,12 @@
             $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
             $conn -> set_charset("UTF8");
 
-            $result = $conn -> query("SELECT * FROM order_list");
+            $result = $conn -> query("SELECT * From order_info");
             while(($row_result = $result->fetch_assoc()) !== null) {
-                // 將查詢結果(陣列)，儲存在陣列中
                 $row[] = $row_result;
             }
             
-            echo json_encode(array("row"=>$row));
-            // echo json_encode(array('result' => $result ));
+            echo json_encode(array("data"=>$row));
             $conn -> close();
             
         }

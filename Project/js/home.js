@@ -7,7 +7,7 @@ $("#a-Login").click(function(event){
         $.ajax({
             type: 'POST',
             async: false,
-            url: '../Project/php/db.php',
+            url: '../php/db.php',
             dataType: 'json',
             data: {request: 'logout'},
             success: function(data){
@@ -29,7 +29,7 @@ $(function(){
         $.ajax({
             type: 'POST',
             async: false,
-            url: '../Project/php/db.php',
+            url: '../php/db.php',
             dataType: 'json',
             data: {request: 'checklogin'},
             success: function(data){
