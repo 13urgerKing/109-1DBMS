@@ -1,5 +1,9 @@
+html {
+	height: 100%;
+}
 body {
   background-color: #1b2838;
+  height: 100%;
 }
 .card {
   background-color: #16202d;
@@ -29,12 +33,14 @@ body {
 .container{
   max-width: 90%;
 }
-.carousel-item img{
-  width: 100%;
-}
 .nav-link{
   font-size: 32px;
 }
 .currentpage{
   color: #cdb75f!important;
+}
+.cart-btn{
+  background-color: #cdb75f;
+  color: #000000;
+  border-radius: 8px;
 }

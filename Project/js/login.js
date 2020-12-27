@@ -17,7 +17,7 @@
             $.ajax({
                 type: 'POST',
                 async: false,
-                url: '../php/db.php',
+                url: '../php/login.php',
                 dataType: 'json',
                 data: {request: 'login', email: $(input[0]).val(), password: $(input[1]).val()},
                 success: function(data){
@@ -42,9 +42,7 @@
         });
     });
 
-    
-
-    function validate (input){
+    function validate(input){
         if($(input).attr('name') == 'email'){
             if($(input).val().trim().match(/^[a-zA-Z0-9_-]+@[a-zA-Z0-9]+\.[a-zA-Z]+$/) == null){
                 mailvalidate = false;
@@ -78,7 +76,3 @@
         }
     }
 })(jQuery);
-
-$("#a-Home").click(function(event){
-    document.location.href="./Home.html";
-});

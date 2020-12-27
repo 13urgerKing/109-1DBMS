@@ -67,7 +67,3 @@
       new CheckboxDropdown(checkboxesDropdowns[i]);
     }
 })(jQuery);
-
-$("#a-Home").click(function(event){
-    document.location.href="./Home.html";
-});

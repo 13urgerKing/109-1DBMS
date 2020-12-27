@@ -12,8 +12,16 @@
             $result = $conn -> query("SELECT * FROM gamlab_user WHERE Email='$email' AND Password='$password'");
             if($result->num_rows > 0){
                 $msg='success';
-                $result = $result->fetch_assoc();
-                $_SESSION['userid'] = $result['Email'];
+                while(($row_result = $result->fetch_assoc()) !== null) {
+                    $row[] = $row_result;
+                }
+                $_SESSION['userno'] = $row[0]["User_No"];
+                if($conn -> query("SELECT * FROM seller WHERE User_No={$_SESSION['userno']}")->num_rows > 0){
+                    $_SESSION['userrow'] = "seller";
+                }
+                else{
+                    $_SESSION['userrow'] = "buyer";
+                }
             }
             else{
                 $msg='failed';
@@ -22,17 +30,17 @@
             $conn -> close();
             echo json_encode(array('msg' => $msg));
         }
-        if($req == 'checklogin'){
-            if(isset($_SESSION['userid'])){
-                echo json_encode(array('msg' => 'login'));
+        if($req == 'checkuserrow'){
+            if(isset($_SESSION['userrow'])){
+                echo json_encode(array('userrow' => $_SESSION['userrow']));
             }
             else{
-                echo json_encode(array('msg' => 'logout'));
+                echo json_encode(array('userrow' => 'unknown'));
             }
         }
         if($req == 'logout'){
-            if(isset($_SESSION['userid'])){
-                unset($_SESSION['userid']);
+            if(isset($_SESSION['userrow'])){
+                unset($_SESSION['userrow']);
                 echo json_encode(array('msg' => 'success'));
             }
             else{

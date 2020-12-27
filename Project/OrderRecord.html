@@ -1,15 +1,17 @@
 <!DOCTYPE html>
+<html lang="en">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>GAMLAB Home</title>
+  <title>GAMLAB Order Record</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link href="css/home.css?v="+new Date().getTime() rel="stylesheet">
+	<link href="css/orderrecord.css?v="+new Date().getTime() rel="stylesheet">
 </head>
 
 <body>
-  
+
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
@@ -20,28 +22,14 @@
       </div>
     </div>
   </nav>
-  
+
   <!-- Page Content -->
-  <div class="container" style="height: 100%;">
-    <div class="row">
-
-      <div class="col-lg-2">
-        <div class="list-group">
-          <a href="#" class="list-group-item">單人</a>
-          <a href="#" class="list-group-item">多人</a>
-          <a href="#" class="list-group-item">玩家對戰</a>
-        </div>
-      </div>
-
-      <div class="col-lg-10 list-group">
-        <div id="content-Home" class="row">
-
-        </div>
-      </div>
-
-    </div>
-  </div>
-
+  <div id = "content-Check_orderlist" class="container w-50" style="height: 100%;">
+    <span class="list-group login100-form-title">
+      Order List
+    </span>
+  </div>  
+  
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
@@ -49,11 +37,11 @@
     </div>
   </footer>
 
-  <!-- JavaScript -->
+  <!-- Bootstrap core JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
   <script src="js/topnavbar.js?v="+new Date().getTime()></script>
-  <script src="js/home.js?v="+new Date().getTime()></script>
+  <script src="js/orderrecord.js"+new Date().getTime()></script>
 
 </body>
 
