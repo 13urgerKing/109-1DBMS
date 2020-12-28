@@ -3,17 +3,11 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>GAMLAB</title>
-
-  <!-- Bootstrap core CSS -->
+  <title>GAMLAB Login</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom styles for this template -->
-  <link href="css/style.css?v="+new Date().getTime() rel="stylesheet">
-  <link href="css/util.css?v="+new Date().getTime() rel="stylesheet">
-	<link href="css/main.css?v="+new Date().getTime() rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	
-
+  <link href="css/home.css?v="+new Date().getTime() rel="stylesheet">
+	<link href="css/login.css?v="+new Date().getTime() rel="stylesheet">
 </head>
 
 <body>
@@ -21,27 +15,16 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="#"><img class="d-block img-fluid" src="./img/LOGO_PNG.png" alt="LOGO_PNG"></a>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" id="a-Home" href="#">商店</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">我的遊戲</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">客服中心</a>
-          <li class="nav-item">
-            <a class="nav-link currentpage" href="#">登入</a>
-          </li>
-          </li>
+      <a class="navbar-brand" href="home.html"><img class="d-block img-fluid" src="./img/LOGO_PNG.png" alt="LOGO_PNG"></a>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul id="topnavbar" class="navbar-nav ml-auto">
         </ul>
       </div>
     </div>
   </nav>
+  
   <!-- Page Content -->
-  <div class="limiter">
+  <div class="limiter" style="height: 100%;">
 		<div class="container-login100">
 			<div class="wrap-login100">
         <div>
@@ -89,6 +72,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+  <script src="js/topnavbar.js?v="+new Date().getTime()></script>
   <script src="js/login.js?v="+new Date().getTime()></script>
 
 </body>

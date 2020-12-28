@@ -29,7 +29,7 @@
         this.areAllChecked = false;
         
         if(checked.length <= 0) {
-            this.$label.html('Select Options');
+            this.$label.html('選擇分類');
         }
         else if(checked.length === 1) {
             this.$label.html(checked.parent('label').text());
@@ -67,7 +67,3 @@
       new CheckboxDropdown(checkboxesDropdowns[i]);
     }
 })(jQuery);
-
-$("#a-Home").click(function(event){
-    document.location.href="./Home.html";
-});
