@@ -48,26 +48,17 @@
                 <i class="fa fa-usd" aria-hidden="true"></i>
               </span>
             </div>
-            
-            <div class="dropdown wrap-input100" data-control="checkbox-dropdown">
-              <label class="dropdown-label input100"></label>
-              
-              <div class="dropdown-list">
-                <label class="dropdown-option">
-                  <input type="checkbox" name="dropdown-group" value="Selection 1" />
-                  單人
-                </label>
-                
-                <label class="dropdown-option">
-                  <input type="checkbox" name="dropdown-group" value="Selection 2" />
-                  多人
-                </label>
-                
-                <label class="dropdown-option">
-                  <input type="checkbox" name="dropdown-group" value="Selection 3" />
-                  玩家對戰
-                </label>
-              </div>
+
+            <div class="btn-group btn-group-toggle" id="catagory" data-toggle="buttons">
+              <label class="btn active">
+                <input type="radio" name="options" value="單人" checked>單人
+              </label>
+              <label class="btn">
+                <input type="radio" name="options" value="多人">多人
+              </label>
+              <label class="btn">
+                <input type="radio" name="options" value="玩家對戰">玩家對戰
+              </label>
             </div>
 
             <div class="wrap-input100 validate-input" data-validate = "請輸入描述">
