@@ -67,3 +67,8 @@ CREATE TABLE User_Comment (
   Content varchar(500) NOT NULL,
   PRIMARY KEY(Comment_No)
 );
+
+CREATE TABLE Shopping_Cart (
+  Buyer_No varchar(5) NOT NULL,
+  Game_No varchar(5) NOT NULL
+);

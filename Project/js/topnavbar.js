@@ -2,7 +2,7 @@
     <a class="nav-link currentpage" href="#">商店</a>
 </li>*/
 function createTopNavbar(){
-    var userrow;
+    var userrole;
     var navbarelm;
     var pagename=window.location.pathname.split("/").pop().toLowerCase();
     $.ajax({
@@ -10,15 +10,15 @@ function createTopNavbar(){
         async: false,
         url: '../php/login.php',
         dataType: 'json',
-        data: {request: 'checkuserrow'},
+        data: {request: 'checkuserrole'},
         success: function(data){
-            userrow=data.userrow;
+            userrole=data.userrole;
         }
     });
-    if(userrow=="buyer"){
+    if(userrole=="buyer"){
         navbarelm=["商店","home.html","購物車","shoppingcart.html","歷史訂單","orderrecord.html","客服中心","#","登出","#"];
     }
-    else if(userrow=="seller"){
+    else if(userrole=="seller"){
         navbarelm=["我的商品","#","上架商品","publish.html","下架商品","#","客服中心","#","登出","#"]
     }
     else{

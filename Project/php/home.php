@@ -21,5 +21,14 @@
             $conn -> close();
             echo json_encode(array('msg' => $msg, 'data' => $row));
         }
+
+        if ($req == 'addtocart'){
+            $userId = $_POST['userId'];
+            $gameId = $_POST['gameId'];
+            $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
+            $conn -> set_charset("UTF8");
+
+            $result = $conn -> query("INSERT INTO shopping_cart values('$userId', '$gameId')");
+        }
     }
 ?>
