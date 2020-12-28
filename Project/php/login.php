@@ -47,5 +47,10 @@
                 echo json_encode(array('msg' => 'failed'));
             }
         }
+        if($req == 'getuserno'){
+            if(isset($_SESSION['userno'])){
+                echo json_encode(array('userno' => $_SESSION['userno']));
+            }
+        }
     }
 ?>
