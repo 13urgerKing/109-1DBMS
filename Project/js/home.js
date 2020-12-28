@@ -74,6 +74,8 @@ function createContentHome(){
         });
         var btn1 =
         $('<button/>', {
+            id: gamedata[i].Game_No,
+            name: "addgametocart",
             class: 'cart-btn btn-lg btn-block',
             style: 'border-style: none!important;cursor: pointer;',
             text: '加入購物車'
@@ -93,4 +95,7 @@ function createContentHome(){
 }
 $(function(){
     createContentHome();
+    $('[name="addgametocart"]').on("click", function(){
+        console.log($(this).attr("id"));
+    });
 });
