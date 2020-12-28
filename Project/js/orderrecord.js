@@ -30,7 +30,7 @@ $(function(){
             n=orderdata.length;
         }
     });
-    for(var i=0;i<n;i++){
+    for(var i=n-1;i>=0;i--){
         var div1 = 
         $("<div/>",{
             name:"showorderlist",
@@ -44,12 +44,22 @@ $(function(){
             class:"card-body",
             style:"text-align: center"
         });
-        var h31 =
-        $("<h3/>",{
-            class:"card-title",
-            style:"margin-bottom:0.75rem;",
-            text:"訂單編號：" + orderdata[i].Order_No
-        })
+        if(orderdata[i].Finished==1){
+            var h31 =
+            $("<h3/>",{
+                class:"card-title",
+                style:"margin-bottom:0.75rem;Color:#00FF00;",
+                text:"訂單編號：" + orderdata[i].Order_No
+            })
+        }
+        else{
+            var h31 =
+            $("<h3/>",{
+                class:"card-title",
+                style:"margin-bottom:0.75rem;Color:#FF0000;",
+                text:"訂單編號：" + orderdata[i].Order_No
+            })
+        }
         var p1 =
         $("<p/>",{
             class:"card-text",
