@@ -4,9 +4,9 @@ VALUES('00001', 'buyer@gamlab.com', 'buyer', 'buyer', '2021-01-01', '0912345678'
 INSERT INTO gamlab_user
 VALUES('00002', 'seller@gamlab.com', 'seller', 'seller', '2021-01-01', '0912345678', 'M');
 INSERT INTO buyer
-VALUES('00001', 0, 2000);
+VALUES('00001', 2000);
 INSERT INTO seller
-VALUES('00002', '0123456789');
+VALUES('00002', 0);
 INSERT INTO coupon
 VALUES('00001', '00001',150, True, '2021-02-01');
 INSERT INTO coupon
