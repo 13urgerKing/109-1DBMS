@@ -16,5 +16,18 @@
                 $conn -> close();
             }
         }
+        if($req == 'getcoupon'){
+            $userno = $_POST['userno'];
+            $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
+            $conn -> set_charset("UTF8");
+            $result = $conn -> query("SELECT * FROM coupon where coupon.Buyer_No = '$userno' and coupon.used = 0");
+            if($result -> num_rows>0){
+                while(($row_result = $result->fetch_assoc()) !== null) {
+                    $row[] = $row_result;
+                }
+                echo json_encode(array("data"=>$row));
+                $conn -> close();
+            }
+        }
     }
 ?>
