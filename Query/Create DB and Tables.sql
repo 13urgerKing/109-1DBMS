@@ -1,3 +1,4 @@
+DROP DATABASE gamlabdb;
 CREATE DATABASE gamlabdb;
 USE gamlabdb;
 CREATE TABLE gamlab_User (
@@ -52,6 +53,7 @@ CREATE TABLE Order_info (
   Coupon_No varchar(5) NULL,
   Date DATE NOT NULL,
   Price INT NOT NULL,
+  Finished Boolean NOT NULL,
   PRIMARY KEY(Order_No)
 );
 
@@ -66,4 +68,9 @@ CREATE TABLE User_Comment (
   Game_No varchar(5) NOT NULL,
   Content varchar(500) NOT NULL,
   PRIMARY KEY(Comment_No)
+);
+
+CREATE TABLE Shopping_Cart (
+  Buyer_No varchar(5) NOT NULL,
+  Game_No varchar(5) NOT NULL
 );

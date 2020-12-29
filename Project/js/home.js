@@ -96,6 +96,44 @@ function createContentHome(){
 $(function(){
     createContentHome();
     $('[name="addgametocart"]').on("click", function(){
-        console.log($(this).attr("id"));
+        var userId;
+        var userrole;
+        $.ajax({
+            type: 'POST',
+            async: false,
+            url: '../php/login.php',
+            dataType: 'json',
+            data: {request: 'getuserno'},
+            success: function(data){
+                userId = data.userno;
+            }
+        });
+
+        $.ajax({
+            type: 'POST',
+            async: false,
+            url: '../php/login.php',
+            dataType: 'json',
+            data: {request: 'checkuserrole'},
+            success: function(data){
+                userrole=data.userrole;
+            }
+        });
+
+        if(userId != undefined && userrole == 'buyer'){
+            $.ajax({
+                type: 'POST',
+                async: false,
+                url: '../php/home.php',
+                dataType: 'json',
+                data: {request: 'addtocart', userId: userId, gameId: $(this).attr("id")},
+                success: function(data){
+                    msg=data.msg;
+                    gamedata=data.data;
+                    n=gamedata.length;
+                }
+            });
+        }
     });
+    
 });

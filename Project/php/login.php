@@ -17,10 +17,10 @@
                 }
                 $_SESSION['userno'] = $row[0]["User_No"];
                 if($conn -> query("SELECT * FROM seller WHERE User_No={$_SESSION['userno']}")->num_rows > 0){
-                    $_SESSION['userrow'] = "seller";
+                    $_SESSION['userrole'] = "seller";
                 }
                 else{
-                    $_SESSION['userrow'] = "buyer";
+                    $_SESSION['userrole'] = "buyer";
                 }
             }
             else{
@@ -30,17 +30,18 @@
             $conn -> close();
             echo json_encode(array('msg' => $msg));
         }
-        if($req == 'checkuserrow'){
-            if(isset($_SESSION['userrow'])){
-                echo json_encode(array('userrow' => $_SESSION['userrow']));
+        if($req == 'checkuserrole'){
+            if(isset($_SESSION['userrole'])){
+                echo json_encode(array('userrole' => $_SESSION['userrole']));
             }
             else{
-                echo json_encode(array('userrow' => 'unknown'));
+                echo json_encode(array('userrole' => 'unknown'));
             }
         }
         if($req == 'logout'){
-            if(isset($_SESSION['userrow'])){
-                unset($_SESSION['userrow']);
+            if(isset($_SESSION['userrole'])){
+                unset($_SESSION['userrole']);
+                unset($_SESSION['userno']);
                 echo json_encode(array('msg' => 'success'));
             }
             else{
