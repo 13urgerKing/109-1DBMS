@@ -41,6 +41,7 @@
         if($req == 'logout'){
             if(isset($_SESSION['userrole'])){
                 unset($_SESSION['userrole']);
+                unset($_SESSION['userno']);
                 echo json_encode(array('msg' => 'success'));
             }
             else{
