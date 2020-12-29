@@ -361,6 +361,12 @@ iframe {
   }
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .btn-group {
   font-size: 15px;
   line-height: 1;
@@ -371,8 +377,8 @@ iframe {
   height: 50px;
   border-radius: 25px;
   margin-bottom: 10px;
-
 }
+
 .btn{
   display: flex;
   justify-content: center;

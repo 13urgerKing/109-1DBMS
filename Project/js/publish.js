@@ -1,83 +1,118 @@
-// (function($) {
-//     var CheckboxDropdown = function(el) {
-//         var _this = this;
-//         this.isOpen = false;
-//         this.areAllChecked = false;
-//         this.$el = $(el);
-//         this.$label = this.$el.find('.dropdown-label');
-//         this.$inputs = this.$el.find('[type="checkbox"]');
+(function ($){
+    'use strict';
+    var input = $('.validate-input .input100');
+    var nameValidate = true;
+    var priceValidate = true;
+    var descriptionValidate = true;
+    var linkValidate = true;
+    var userno;
 
-//         this.onCheckBox();
-        
-//         this.$label.on('click', function(e) {
-//         e.preventDefault();
-//         _this.toggleOpen();
-//         });
-        
-//         this.$inputs.on('change', function(e) {
-//         _this.onCheckBox();
-//         });
-//     };
-    
-//     CheckboxDropdown.prototype.onCheckBox = function() {
-//         this.updateStatus();
-//     };
-    
-//     CheckboxDropdown.prototype.updateStatus = function() {
-//         var checked = this.$el.find(':checked');
-        
-//         this.areAllChecked = false;
-        
-//         if(checked.length <= 0) {
-//             this.$label.html('選擇分類');
-//         }
-//         else if(checked.length === 1) {
-//             this.$label.html(checked.parent('label').text());
-//         }
-//         else if(checked.length === this.$inputs.length) {
-//             this.$label.html('All Selected');
-//             this.areAllChecked = true;
-//         }
-//         else {
-//             this.$label.html(checked.length + ' Selected');
-//         }
-//     };
-    
-//     CheckboxDropdown.prototype.toggleOpen = function(forceOpen) {
-//         var _this = this;
-
-//         if(!this.isOpen || forceOpen) {
-//             this.isOpen = true;
-//             this.$el.addClass('open');
-//         $(document).on('click', function(e) {
-//             if(!$(e.target).closest('[data-control]').length) {
-//                 _this.toggleOpen();
-//             }
-//         });
-//         }
-//         else {
-//             this.isOpen = false;
-//             this.$el.removeClass('open');
-//             $(document).off('click');
-//         }
-//     };
-    
-//     var checkboxesDropdowns = document.querySelectorAll('[data-control="checkbox-dropdown"]');
-//     for(var i = 0, length = checkboxesDropdowns.length; i < length; i++) {
-//       new CheckboxDropdown(checkboxesDropdowns[i]);
-//     }
-// })(jQuery);
-
-$(function(){
-    $('input[type=radio][name=options]').change(function() {
-        if (this.value == '單人') {
-            console.log("單人");
-        }
-        else if (this.value == '多人') {
-            console.log("多人");
-        }
-        else {
-            console.log("玩家對戰");
+    $.ajax({
+        type: 'POST',
+        async: false,
+        url: '../php/login.php',
+        dataType: 'json',
+        data: {request: 'getuserno'},
+        success: function(data){
+            userno=data.userno;
         }
     });
-});
+
+    $('.validate-form').on('submit',function(){
+        var check = true;
+        var msg = null;
+        for(var i=0; i<input.length; i++){
+            if(!validate(input[i])){
+                showValidate(input[i]);
+                check=false;
+            }
+        }
+        if(check){
+            $.ajax({
+                type: 'POST',
+                async: false,
+                url: '../php/publish.php',
+                dataType: 'json',
+                data: {request: 'publish', userno: userno, name: $(input[0]).val(), price: $(input[1]).val(), category: $("input[type=radio][name=options]:checked").val(), description: $(input[2]).val(), link: $(input[3]).val()},
+                success: function(data){
+                    msg=data.msg;
+                    console.log(data.msg);
+                }
+            });
+        }
+        if(msg=='success'){
+            alert('上架成功!');
+        }
+        else{
+            alert('上架失敗!');
+        }
+        return false;
+    });
+
+
+    $('.validate-form .input100').each(function(){
+        $(this).focus(function(){
+            hideValidate(this);
+        });
+    });
+
+    function validate(input){
+        if($(input).attr('name') == 'name'){
+            if($(input).val().trim() == ''){
+                nameValidate = false;
+                return false;
+            }
+        }
+        else if($(input).attr('name') == 'price'){
+            if($(input).val().trim() == ''){
+                priceValidate = false;
+                return false;
+            }
+        }
+        else if($(input).attr('name') == 'description'){
+            if($(input).val().trim() == ''){
+                descriptionValidate = false;
+                return false;
+            }
+        }
+        else if($(input).attr('name') == 'link'){
+            if($(input).val().trim() == ''){
+                linkValidate = false;
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function showValidate(input){
+        var thisAlert = $(input).parent();
+        $(thisAlert).addClass('alert-validate');
+    }
+
+    function hideValidate(input){
+        if($(input).attr('name') == 'name' && !nameValidate){
+            input.value = '';
+            nameValidate = true
+            var thisAlert = $(input).parent();
+            $(thisAlert).removeClass('alert-validate');
+        }
+        if($(input).attr('name') == 'price' && !priceValidate){
+            input.value = '';
+            priceValidate = true
+            var thisAlert = $(input).parent();
+            $(thisAlert).removeClass('alert-validate');
+        }
+        if($(input).attr('name') == 'description' && !descriptionValidate){
+            input.value = '';
+            descriptionValidate = true
+            var thisAlert = $(input).parent();
+            $(thisAlert).removeClass('alert-validate');
+        }
+        if($(input).attr('name') == 'link' && !linkValidate){
+            input.value = '';
+            linkValidate = true
+            var thisAlert = $(input).parent();
+            $(thisAlert).removeClass('alert-validate');
+        }
+    }
+})(jQuery);

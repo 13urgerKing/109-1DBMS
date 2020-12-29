@@ -42,22 +42,22 @@
             </div>  
 
             <div class="wrap-input100 validate-input" data-validate = "請輸入金額">
-              <input class="input100" name="price" placeholder="售價">
+              <input class="input100" type="number" min="0" name="price" placeholder="售價">
               <span class="focus-input100"></span>
               <span class="symbol-input100">
                 <i class="fa fa-usd" aria-hidden="true"></i>
               </span>
             </div>
 
-            <div class="btn-group btn-group-toggle" id="catagory" data-toggle="buttons">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
               <label class="btn active">
-                <input type="radio" name="options" value="單人" checked>單人
+                <input type="radio" name="options" value="single" checked>單人
               </label>
               <label class="btn">
-                <input type="radio" name="options" value="多人">多人
+                <input type="radio" name="options" value="multi">多人
               </label>
               <label class="btn">
-                <input type="radio" name="options" value="玩家對戰">玩家對戰
+                <input type="radio" name="options" value="battle">玩家對戰
               </label>
             </div>
 
