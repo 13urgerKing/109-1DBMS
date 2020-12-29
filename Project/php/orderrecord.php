@@ -28,7 +28,7 @@
             $orderno = $_POST['orderno'];
             $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
             $conn -> set_charset("UTF8");
-            $result = $conn -> query("SELECT ol.Game_No,G.Name,G.Price,G.Description,G.ImageURL FROM order_list ol,game G WHERE ol.Order_No='$orderno' AND ol.Game_No=G.Game_No");
+            $result = $conn -> query("SELECT game.Game_No, Name, Price, Description, ImageURL FROM order_list, game WHERE order_list.Order_No = '$orderno' AND order_list.Game_No = game.Game_No");
             if($result -> num_rows>0){
                 while(($row_result = $result->fetch_assoc()) !== null) {
                     $row[] = $row_result;
