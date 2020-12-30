@@ -1,6 +1,5 @@
 <?php
     header('Content-Type: application/json; charset=UTF-8');
-    session_start();
     if($_SERVER['REQUEST_METHOD'] == "POST"){
         $req = $_POST['request'];
         if($req == 'getshoppingcart'){
@@ -30,4 +29,3 @@
             }
         }
     }
-?>

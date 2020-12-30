@@ -1,6 +1,5 @@
 <?php
     header('Content-Type: application/json; charset=UTF-8');
-    session_start();
     if ($_SERVER['REQUEST_METHOD'] == "POST"){
         $req = $_POST['request'];
         if ($req == 'getgamedata'){
@@ -28,7 +27,6 @@
             $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
             $conn -> set_charset("UTF8");
 
-            $result = $conn -> query("INSERT INTO shopping_cart values('$userId', '$gameId')");
+            $result = $conn -> query("INSERT INTO shopping_cart VALUES('$userId', '$gameId')");
         }
     }
-?>

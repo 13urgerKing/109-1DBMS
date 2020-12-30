@@ -11,7 +11,7 @@
             $link = $_POST['link'];
             $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
             $conn -> set_charset("UTF8");
-            $currMax = $conn -> query("SELECT Game_No From game WHERE Game_No = (SELECT MAX(CAST(Game_No as SIGNED)) FROM game)");
+            $currMax = $conn -> query("SELECT Game_No FROM game WHERE Game_No=(SELECT MAX(CAST(Game_No as SIGNED)) FROM game)");
             $gameno = str_pad((int)$currMax -> fetch_assoc()['Game_No'] + 1, 5, '0', STR_PAD_LEFT);
 
             if($conn -> query("INSERT INTO game VALUES ('$gameno', '$userno', '$price', '0', '$category', '$name', '$description', '$link', TRUE)") === TRUE){
@@ -24,4 +24,3 @@
             echo json_encode(array('msg' => $msg));
         }
     }
-?>
