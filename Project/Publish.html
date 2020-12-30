@@ -1,107 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>GAMLAB Publish</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link href="css/home.css?v=" +new Date().getTime() rel="stylesheet" />
+    <link href="css/publish.css?v=" +new Date().getTime() rel="stylesheet" />
+  </head>
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>GAMLAB Publish</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/home.css?v="+new Date().getTime() rel="stylesheet">
-	<link href="css/publish.css?v="+new Date().getTime() rel="stylesheet">
-</head>
-
-<body>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="home.html"><img class="d-block img-fluid" src="./img/LOGO_PNG.png" alt="LOGO_PNG"></a>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul id="topnavbar" class="navbar-nav ml-auto">
-        </ul>
-      </div>
-    </div>
-  </nav>
-  
-  <!-- Page Content -->
-  <div class="limiter" style="height: 100%;">
-		<div class="container-login100">
-			<div class="wrap-login100">
-        <div>
-          <span class="login100-form-title">
-            Publish
-          </span>
-  
-          <form class="login100-form validate-form">
-            <div class="wrap-input100 validate-input" data-validate = "請輸入遊戲名稱">
-              <input class="input100" name="name" placeholder="名稱">
-              <span class="focus-input100"></span>
-              <span class="symbol-input100">
-                <i class="fa fa-font" aria-hidden="true"></i>
-              </span>
-            </div>  
-
-            <div class="wrap-input100 validate-input" data-validate = "請輸入金額">
-              <input class="input100" type="number" min="0" name="price" placeholder="售價">
-              <span class="focus-input100"></span>
-              <span class="symbol-input100">
-                <i class="fa fa-usd" aria-hidden="true"></i>
-              </span>
-            </div>
-
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-              <label class="btn active">
-                <input type="radio" name="options" value="single" checked>單人
-              </label>
-              <label class="btn">
-                <input type="radio" name="options" value="multi">多人
-              </label>
-              <label class="btn">
-                <input type="radio" name="options" value="battle">玩家對戰
-              </label>
-            </div>
-
-            <div class="wrap-input100 validate-input" data-validate = "請輸入描述">
-              <input class="input100" name="description" placeholder="描述">
-              <span class="focus-input100"></span>
-              <span class="symbol-input100">
-                <i class="fa fa-info" aria-hidden="true"></i>
-              </span>
-            </div>
-
-            <div class="wrap-input100 validate-input" data-validate = "請輸入圖片連結">
-              <input class="input100" name="link" placeholder=圖片連結>
-              <span class="focus-input100"></span>
-              <span class="symbol-input100">
-                <i class="fa fa-share" aria-hidden="true"></i>
-              </span>
-            </div>
-
-            <div class="container-login100-form-btn">
-              <button class="login100-form-btn">
-                上架
-              </button>
-            </div>
-
-          </form>
+  <body>
+    <div id="body">
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="home.html"
+            ><img
+              class="d-block img-fluid"
+              src="./img/LOGO_PNG.png"
+              alt="LOGO_PNG"
+          /></a>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul id="topnavbar" class="navbar-nav ml-auto"></ul>
+          </div>
         </div>
-			</div>
-		</div>
-	</div>
+      </nav>
 
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; GAMELAB</p>
+      <!-- Content -->
+      <div id="content">
+        <div class="limiter">
+          <div class="container-login100">
+            <div class="wrap-login100">
+              <div>
+                <span class="login100-form-title"> Publish </span>
+
+                <form class="login100-form validate-form">
+                  <div
+                    class="wrap-input100 validate-input"
+                    data-validate="請輸入遊戲名稱"
+                  >
+                    <input class="input100" name="name" placeholder="名稱" />
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                      <i class="fa fa-font" aria-hidden="true"></i>
+                    </span>
+                  </div>
+
+                  <div
+                    class="wrap-input100 validate-input"
+                    data-validate="請輸入金額"
+                  >
+                    <input
+                      class="input100"
+                      type="number"
+                      min="0"
+                      name="price"
+                      placeholder="售價"
+                    />
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                      <i class="fa fa-usd" aria-hidden="true"></i>
+                    </span>
+                  </div>
+
+                  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn active">
+                      <input
+                        type="radio"
+                        name="options"
+                        value="single"
+                        checked
+                      />單人
+                    </label>
+                    <label class="btn">
+                      <input type="radio" name="options" value="multi" />多人
+                    </label>
+                    <label class="btn">
+                      <input
+                        type="radio"
+                        name="options"
+                        value="battle"
+                      />玩家對戰
+                    </label>
+                  </div>
+
+                  <div
+                    class="wrap-input100 validate-input"
+                    data-validate="請輸入描述"
+                  >
+                    <input
+                      class="input100"
+                      name="description"
+                      placeholder="描述"
+                    />
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                      <i class="fa fa-info" aria-hidden="true"></i>
+                    </span>
+                  </div>
+
+                  <div
+                    class="wrap-input100 validate-input"
+                    data-validate="請輸入圖片連結"
+                  >
+                    <input
+                      class="input100"
+                      name="link"
+                      placeholder="圖片連結"
+                    />
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                      <i class="fa fa-share" aria-hidden="true"></i>
+                    </span>
+                  </div>
+
+                  <div class="container-login100-form-btn">
+                    <button class="login100-form-btn">上架</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
     </div>
-  </footer>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
-  <script src="js/topnavbar.js?v="+new Date().getTime()></script>
-  <script src="js/publish.js?v="+new Date().getTime()></script>
-
-</body>
-
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="js/topnavbar.js?v=" +new Date().getTime()></script>
+    <script src="js/publish.js?v=" +new Date().getTime()></script>
+    <script src="js/footer.js" +new Date().getTime()></script>
+  </body>
 </html>

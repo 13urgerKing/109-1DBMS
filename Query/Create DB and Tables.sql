@@ -12,16 +12,15 @@ CREATE TABLE gamlab_User (
   PRIMARY KEY(User_No)
 );
 
-CREATE TABLE Seller (
+CREATE TABLE Buyer (
   User_No varchar(5) NOT NULL,
-  Bank_account varchar(15) NOT NULL,
+  Wallet INT NOT NULL,
   PRIMARY KEY(User_No)
 );
 
-CREATE TABLE Buyer (
+CREATE TABLE Seller (
   User_No varchar(5) NOT NULL,
-  Member_Lvl INT NOT NULL,
-  Wallet INT NOT NULL,
+  Profit INT NOT NULL,
   PRIMARY KEY(User_No)
 );
 
