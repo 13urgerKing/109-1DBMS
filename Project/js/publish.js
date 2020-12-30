@@ -50,7 +50,6 @@ $(function () {
         },
         success: function (data) {
           msg = data.msg;
-          console.log(data.msg);
         },
       });
     }
