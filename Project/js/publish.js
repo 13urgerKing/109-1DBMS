@@ -36,7 +36,6 @@
                 data: {request: 'publish', userno: userno, name: $(input[0]).val(), price: $(input[1]).val(), category: $("input[type=radio][name=options]:checked").val(), description: $(input[2]).val(), link: $(input[3]).val()},
                 success: function(data){
                     msg=data.msg;
-                    console.log(data.msg);
                 }
             });
         }
