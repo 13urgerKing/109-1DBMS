@@ -1,31 +1,31 @@
 <?php
-    header('Content-Type: application/json; charset=UTF-8');
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
-        $req = $_POST['request'];
-        if($req == 'getshoppingcart'){
-            $userno = $_POST['userno'];
-            $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
-            $conn -> set_charset("UTF8");
-            $result = $conn -> query("SELECT game.Name, game.Price, game.Description, game.ImageURL FROM game, shopping_cart WHERE shopping_cart.Buyer_No = '$userno' AND shopping_cart.Game_No = game.Game_No");
-            if($result -> num_rows>0){
-                while(($row_result = $result->fetch_assoc()) !== null) {
-                    $row[] = $row_result;
-                }
-                echo json_encode(array("data"=>$row));
-                $conn -> close();
+header('Content-Type: application/json; charset=UTF-8');
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $req = $_POST['request'];
+    if ($req == 'getshoppingcart') {
+        $userno = $_POST['userno'];
+        $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
+        $conn->set_charset("UTF8");
+        $result = $conn->query("SELECT game.Name, game.Price, game.Description, game.ImageURL FROM game, shopping_cart WHERE shopping_cart.Buyer_No = '$userno' AND shopping_cart.Game_No = game.Game_No");
+        if ($result->num_rows > 0) {
+            while (($row_result = $result->fetch_assoc()) !== null) {
+                $row[] = $row_result;
             }
-        }
-        if($req == 'getcoupon'){
-            $userno = $_POST['userno'];
-            $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
-            $conn -> set_charset("UTF8");
-            $result = $conn -> query("SELECT * FROM coupon WHERE coupon.Buyer_No = '$userno' AND coupon.used = 0");
-            if($result -> num_rows>0){
-                while(($row_result = $result->fetch_assoc()) !== null) {
-                    $row[] = $row_result;
-                }
-                echo json_encode(array("data"=>$row));
-                $conn -> close();
-            }
+            echo json_encode(array("data" => $row));
+            $conn->close();
         }
     }
+    if ($req == 'getcoupon') {
+        $userno = $_POST['userno'];
+        $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
+        $conn->set_charset("UTF8");
+        $result = $conn->query("SELECT * FROM coupon WHERE coupon.Buyer_No = '$userno' AND coupon.used = 0");
+        if ($result->num_rows > 0) {
+            while (($row_result = $result->fetch_assoc()) !== null) {
+                $row[] = $row_result;
+            }
+            echo json_encode(array("data" => $row));
+            $conn->close();
+        }
+    }
+}

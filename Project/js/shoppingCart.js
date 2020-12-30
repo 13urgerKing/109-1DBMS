@@ -42,7 +42,7 @@ $(function () {
 
   for (var i = 0; i < n; i++) {
     var div1 = $("<div/>", {
-      class: "card",
+      class: "card my-3",
       style:
         "border-style: none!important;color: #16202d!important;background-color: rgba(0,0,0,0)!important;",
     });
@@ -57,7 +57,7 @@ $(function () {
 
     var img1 = $("<img/>", {
       src: shoppingCartData[i].ImageURL,
-      class: "card-img",
+      class: "card-img w-100 h-100",
     });
 
     var div4 = $("<div/>", {
@@ -83,7 +83,6 @@ $(function () {
 
     var p2 = $("<p/>", {
       class: "card-text",
-      style: "margin-bottom:0.25rem;",
       text: "NT$：" + shoppingCartData[i].Price,
     });
     div5.append(h51);
@@ -108,7 +107,6 @@ $(function () {
     success: function (data) {
       coupondata = data.data;
       n = coupondata.length;
-      // console.log(coupondata);
     },
   });
 
@@ -120,7 +118,7 @@ $(function () {
 
   for (var i = 0; i < n; i++) {
     var div1 = $("<div/>", {
-      class: "card",
+      class: "card my-3",
       style:
         "border-style: none!important;color: #16202d!important;background-color: rgba(0,0,0,0)!important;",
     });
@@ -135,7 +133,7 @@ $(function () {
 
     var img1 = $("<img/>", {
       src: "./img/coupon.jpg",
-      class: "card-img",
+      class: "card-img w-100 h-100",
     });
 
     var div4 = $("<div/>", {
@@ -161,7 +159,6 @@ $(function () {
 
     var p2 = $("<p/>", {
       class: "card-text",
-      style: "margin-bottom:0.25rem;",
       text: "NT$：" + coupondata[i].Amount,
     });
     div5.append(h51);

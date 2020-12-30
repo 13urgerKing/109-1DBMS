@@ -1,32 +1,31 @@
 <?php
-    header('Content-Type: application/json; charset=UTF-8');
-    if ($_SERVER['REQUEST_METHOD'] == "POST"){
-        $req = $_POST['request'];
-        if ($req == 'getgamedata'){
-            $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
-            $conn -> set_charset("UTF8");
+header('Content-Type: application/json; charset=UTF-8');
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $req = $_POST['request'];
+    if ($req == 'getgamedata') {
+        $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
+        $conn->set_charset("UTF8");
 
-            $result = $conn -> query("SELECT * FROM game");
-            if($result->num_rows > 0){
-                $msg='success';
-                while(($row_result = $result->fetch_assoc()) !== null) {
-                    $row[] = $row_result;
-                }
+        $result = $conn->query("SELECT * FROM game");
+        if ($result->num_rows > 0) {
+            $msg = 'success';
+            while (($row_result = $result->fetch_assoc()) !== null) {
+                $row[] = $row_result;
             }
-            else{
-                $msg='failed';
-                $row[] = null;
-            }
-            $conn -> close();
-            echo json_encode(array('msg' => $msg, 'data' => $row));
+        } else {
+            $msg = 'failed';
+            $row[] = null;
         }
-
-        if ($req == 'addtocart'){
-            $userId = $_POST['userId'];
-            $gameId = $_POST['gameId'];
-            $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
-            $conn -> set_charset("UTF8");
-
-            $result = $conn -> query("INSERT INTO shopping_cart VALUES('$userId', '$gameId')");
-        }
+        $conn->close();
+        echo json_encode(array('msg' => $msg, 'data' => $row));
     }
+
+    if ($req == 'addtocart') {
+        $userId = $_POST['userId'];
+        $gameId = $_POST['gameId'];
+        $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
+        $conn->set_charset("UTF8");
+
+        $result = $conn->query("INSERT INTO shopping_cart VALUES('$userId', '$gameId')");
+    }
+}

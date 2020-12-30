@@ -15,12 +15,24 @@ INSERT INTO order_info
 VALUES('00001', '00001', NULL, '2020-12-24', 552, True);
 INSERT INTO order_info
 VALUES('00002', '00001', '00001', '2020-12-25', 300, True);
+INSERT INTO order_info
+VALUES('00003', '00001', NULL, '2020-12-31', 4758, False);
 INSERT INTO order_list
 VALUES('00001', '00001');
 INSERT INTO order_list
 VALUES('00001', '00003');
 INSERT INTO order_list
-VALUES('00002', '00003');
+VALUES('00003', '00001');
+INSERT INTO order_list
+VALUES('00003', '00002');
+INSERT INTO order_list
+VALUES('00003', '00003');
+INSERT INTO order_list
+VALUES('00003', '00004');
+INSERT INTO order_list
+VALUES('00003', '00005');
+INSERT INTO order_list
+VALUES('00003', '00006');
 INSERT INTO game
 VALUES('00001', '00002', 102, 2, 'multi', 'Amoung Us', '一個在線和本地聚會的團隊合作和背叛遊戲，適合4-10位玩家...在太空中！', './img/Among Us.jpg', True);
 INSERT INTO game
