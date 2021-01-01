@@ -6,11 +6,12 @@
       </div>
     </div> */
     $(function () {
-        var shoppingCartData;
+        var myProduct;
         var userno;
         var gamelistdiv;
         var coupondata;
         var couponlistdiv;
+        var available = 0;
         var n = 0;
         $.ajax({
           type: "POST",
@@ -29,8 +30,9 @@
           dataType: "json",
           data: { request: "getmyproduct", userno: userno },
           success: function (data) {
-            shoppingCartData = data.data;
-            n = shoppingCartData.length;
+            myProduct = data.data;
+            n = myProduct.length;
+            available = myProduct.Available;
           },
         });
       
@@ -56,7 +58,7 @@
           });
       
           var img1 = $("<img/>", {
-            src: shoppingCartData[i].ImageURL,
+            src: myProduct[i].ImageURL,
             class: "card-img w-100 h-100",
           });
       
@@ -72,34 +74,60 @@
           var h51 = $("<h5/>", {
             class: "card-title",
             style: "margin-bottom:0.75rem;",
-            text: shoppingCartData[i].Name,
+            text: myProduct[i].Name,
           });
       
           var p1 = $("<p/>", {
             class: "card-text",
             style: "margin-bottom:0.25rem;",
-            text: shoppingCartData[i].Description,
+            text: myProduct[i].Description,
           });
       
           var p2 = $("<p/>", {
             class: "card-text",
-            text: "NT$：" + shoppingCartData[i].Price,
+            text: "NT$：" + myProduct[i].Price,
           });
 
           var div6 = $("<div/>", {
             class: "col-md-2 d-flex align-items-center",
             style: "justify-content: space-between;"
           });
+          
+          if(myProduct[i].Available==0){
+            var btn1 = $("<button/>",{
+              class: "col-5 btn",
+              text: "上架",
+              name: "launch",
+              id: myProduct[i].Game_No
+            });
 
-          var btn1 = $("<button/>",{
-            class: "col-5 btn",
-            text: "上架"
-          });
+            var btn2 = $("<button/>",{
+              class: "col-5 btn",
+              text: "下架",
+              style: "cursor: not-allowed;",
+              disabled: "True",
+              name: "off",
+              id: myProduct[i].Game_No
+            });
+          }
+          else{
+            var btn1 = $("<button/>",{
+              class: "col-5 btn",
+              text: "上架",
+              style: "cursor: not-allowed;",
+              disabled: "True",
+              name: "launch",
+              id: myProduct[i].Game_No
+            });
 
-          var btn2 = $("<button/>",{
-            class: "col-5 btn",
-            text: "下架"
-          });
+            var btn2 = $("<button/>",{
+              class: "col-5 btn",
+              text: "下架",
+              name: "off",
+              id: myProduct[i].Game_No
+            });
+          }
+          
           div5.append(h51);
           div5.append(p1);
           div5.append(p2);
@@ -115,16 +143,33 @@
         }
       
         $("#MyProduct").append(gamelistdiv);
-        setTimeout(function(){
-            if ($("#content").height() < $(window).height()) {
-                $("body").css({ height: "100%" });
-                $("#body").css({ height: "100%" });
-                $("#content").css({ height: "100%" });
-              }
-        })
-      
+        
+        $('[name="off"]').on("click", function (){
+          var gameno = this.id;
+          $.ajax({
+            type: "POST",
+            async: false,
+            url: "../php/myproduct.php",
+            dataType: "json",
+            data: { request: "offgame", GameNo: gameno },
+            
+          });
+          window.location.reload();
+        });
+
+        $('[name="launch"]').on("click", function (){
+          var gameno = this.id;
+          $.ajax({
+            type: "POST",
+            async: false,
+            url: "../php/myproduct.php",
+            dataType: "json",
+            data: { request: "launchgame", GameNo: gameno },
+            
+          });
+          window.location.reload();
+        });
       });
-      
       /*   <div class="card mb-3">
                 <div class="row no-gutters">
                   <div class="col-md-4 d-flex align-items-center">
