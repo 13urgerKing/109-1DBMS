@@ -1,10 +1,4 @@
 $(function () {
-  if ($("#content").height() < $(window).height()) {
-    $("body").css({ height: "100%" });
-    $("#body").css({ height: "100%" });
-    $("#content").css({ height: "100%" });
-  }
-
   ("use strict");
   var input = $(".validate-input .input100");
   var nameValidate = true;

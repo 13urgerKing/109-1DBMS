@@ -93,12 +93,6 @@ $(function () {
     $("#content-OrderRecord").append(div1);
   }
 
-  if ($("#content").height() < $(window).height()) {
-    $("body").css({ height: "100%" });
-    $("#body").css({ height: "100%" });
-    $("#content").css({ height: "100%" });
-  }
-
   $('[name="showorderlist"]').on("click", function () {
     if ($("#div2-" + $(this).attr("id")).children("#div3").length > 0) {
       $("#div2-" + $(this).attr("id"))

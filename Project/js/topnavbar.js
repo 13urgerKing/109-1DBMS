@@ -11,8 +11,19 @@
 
 function createTopNavbar() {
   var userrole;
+  var userno;
   var navbarelm;
   var pagename = window.location.pathname.split("/").pop().toLowerCase();
+  $.ajax({
+    type: "POST",
+    async: false,
+    url: "../php/login.php",
+    dataType: "json",
+    data: { request: "getuserno" },
+    success: function (data) {
+      userno = data.userno;
+    },
+  });
   $.ajax({
     type: "POST",
     async: false,
@@ -31,21 +42,21 @@ function createTopNavbar() {
       "shoppingcart.html",
       "我的訂單",
       "orderrecord.html",
-      "客服中心",
-      "#",
+      "錢包：",
+      null,
       "登出",
       "#",
     ];
   } else if (userrole == "seller") {
     navbarelm = [
       "我的商品",
-      "#",
+      "MyProduct.html",
       "上架商品",
       "publish.html",
       "訂單處理",
       "#",
-      "客服中心",
-      "#",
+      "收益：",
+      null,
       "登出",
       "#",
     ];
@@ -69,26 +80,28 @@ function createTopNavbar() {
       $.ajax({
         type: "POST",
         async: false,
-        url: "../php/login.php",
+        url: "../php/shoppingCart.php",
         dataType: "json",
-        data: { request: "getcartnum" },
+        data: { request: "getcartnum", userno: userno },
         success: function (data) {
           cartnum = data.cartnum;
         },
       });
+      div1 = $("<div/>", {
+        id: "navbar-shoppingcart",
+        style: "position: relative;",
+      });
+      div1.append(a);
       if (cartnum > 0) {
-        div1 = $("<div/>", {
-          style: "position: relative;",
-        });
         div2 = $("<div/>", {
+          id: "cartnum",
           class: "toprightnumber",
           text: cartnum,
         });
-        div1.append(a);
         div1.append(div2);
         li.append(div1);
       } else {
-        li.append(a);
+        li.append(div1);
       }
     } else {
       li.append(a);

@@ -11,6 +11,7 @@ $(function () {
   var gamelistdiv;
   var coupondata;
   var couponlistdiv;
+  var total;
   var n = 0;
   $.ajax({
     type: "POST",
@@ -174,24 +175,92 @@ $(function () {
 
   $("#content-coupon").append(couponlistdiv);
 
-  if ($("#content").height() < $(window).height()) {
-    $("body").css({ height: "100%" });
-    $("#body").css({ height: "100%" });
-    $("#content").css({ height: "100%" });
-  }
+  $("#btn-deletecart").on("click", function(){
+    n=0;
+    $.ajax({
+      type: "POST",
+      async: false,
+      url: "../php/shoppingCart.php",
+      dataType: "json",
+      data: { request: "getshoppingcart", userno: userno },
+      success: function (data) {
+        shoppingCartData = data.data;
+        n = shoppingCartData.length;
+      },
+    });
+    if(n>0){
+      $.ajax({
+        type: "POST",
+        async: false,
+        url: "../php/shoppingCart.php",
+        dataType: "json",
+        data: { request: "deleteshoppingcart", userno: userno },
+      });
+      window.location.reload();
+      alert("購物車已清空")
+    }
+    else{
+      alert("購物車是空的")
+    }
+  })
+  $("#btn-purchasecart").on("click", function(){
+    n=0;
+    $.ajax({
+      type: "POST",
+      async: false,
+      url: "../php/shoppingCart.php",
+      dataType: "json",
+      data: { request: "getshoppingcart", userno: userno },
+      success: function (data) {
+        shoppingCartData = data.data;
+        n = shoppingCartData.length;
+      },
+    });
+    if(n>0){
+      $.ajax({
+        type: "POST",
+        async: false,
+        url: "../php/shoppingCart.php",
+        dataType: "json",
+        data: { request: "gettotal", userno: userno },
+        success: function(data){
+          total=data.total;
+        }
+      });
+      $.ajax({
+        type: "POST",
+        async: false,
+        url: "../php/shoppingCart.php",
+        dataType: "json",
+        data: { request: "purchaseshoppingcart", userno: userno, total:total },
+      });
+      $.ajax({
+        type: "POST",
+        async: false,
+        url: "../php/shoppingCart.php",
+        dataType: "json",
+        data: { request: "deleteshoppingcart", userno: userno },
+      });
+      window.location.reload();
+      alert("購買成功!")
+    }
+    else{
+      alert("購物車是空的")
+    }
+  })
 });
 
-/*   <div class="card mb-3">
-          <div class="row no-gutters">
-            <div class="col-md-4 d-flex align-items-center">
-              <img src="./img/Among Us.jpg" class="card-img" alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title" style="margin-bottom:0.75rem;">Card title</h5>
-                <p class="card-text" style="margin-bottom:0.25rem;">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text" style="margin-bottom:0.25rem;">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              </div>
-            </div>
+/*  <div class="card mb-3">
+      <div class="row no-gutters">
+        <div class="col-md-4 d-flex align-items-center">
+          <img src="./img/Among Us.jpg" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title" style="margin-bottom:0.75rem;">Card title</h5>
+            <p class="card-text" style="margin-bottom:0.25rem;">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text" style="margin-bottom:0.25rem;">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
           </div>
-        </div> */
+        </div>
+      </div>
+    </div>  */

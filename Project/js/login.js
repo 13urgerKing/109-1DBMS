@@ -1,9 +1,4 @@
 $(function () {
-  if ($("#content").height() < $(window).height()) {
-    $("body").css({ height: "100%" });
-    $("#body").css({ height: "100%" });
-    $("#content").css({ height: "100%" });
-  }
   ("use strict");
   var input = $(".validate-input .input100");
   var mailvalidate = true;
@@ -12,6 +7,7 @@ $(function () {
   $(".validate-form").on("submit", function () {
     var check = true;
     var msg = null;
+    var userrole;
     for (var i = 0; i < input.length; i++) {
       if (!validate(input[i])) {
         showValidate(input[i]);
@@ -31,12 +27,18 @@ $(function () {
         },
         success: function (data) {
           msg = data.msg;
+          userrole = data.userrole;
         },
       });
     }
     if (msg == "success") {
       alert("登入成功!");
-      document.location.href = "./Home.html";
+      if(userrole == "buyer"){
+        document.location.href = "./Home.html";
+      }
+      else{
+        document.location.href = "./MyProduct.html";
+      }
     } else {
       alert("帳號或密碼錯誤!");
     }

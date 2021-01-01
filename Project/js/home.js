@@ -80,12 +80,7 @@ function createContentHome() {
     div2.append(div3);
     div1.append(div2);
     $("#content-Home").append(div1);
-  }
-
-  if ($("#content").height() < $(window).height()) {
-    $("body").css({ height: "100%" });
-    $("#body").css({ height: "100%" });
-    $("#content").css({ height: "100%" });
+    
   }
 }
 $(function () {
@@ -119,7 +114,7 @@ $(function () {
       $.ajax({
         type: "POST",
         async: false,
-        url: "../php/home.php",
+        url: "../php/shoppingCart.php",
         dataType: "json",
         data: {
           request: "addtocart",
@@ -132,6 +127,17 @@ $(function () {
           n = gamedata.length;
         },
       });
+      if($("#cartnum").length){
+        $("#cartnum").text(parseInt($("#cartnum").text())+1);
+      }
+      else{
+        div = $("<div/>", {
+          id: "cartnum",
+          class: "toprightnumber",
+          text: "1",
+        });
+        $("#navbar-shoppingcart").append(div);
+      }
     }
   });
 });

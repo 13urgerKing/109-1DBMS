@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $result = null;
         }
         $conn->close();
-        echo json_encode(array('msg' => $msg));
+        echo json_encode(array('msg' => $msg, 'userrole' => $_SESSION['userrole']));
     }
     if ($req == 'checkuserrole') {
         if (isset($_SESSION['userrole'])) {
@@ -47,19 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if ($req == 'getuserno') {
         if (isset($_SESSION['userno'])) {
             echo json_encode(array('userno' => $_SESSION['userno']));
-        }
-    }
-    if ($req == 'getcartnum') {
-        $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
-        $conn->set_charset("UTF8");
-        $result = $conn->query("SELECT Count(Game_No) FROM shopping_cart WHERE Buyer_No={$_SESSION['userno']}");
-        if ($result->num_rows > 0) {
-            while (($row_result = $result->fetch_assoc()) !== null) {
-                $row[] = $row_result;
-            }
-            echo json_encode(array("cartnum" => $row[0]["Count(Game_No)"]));
-        } else {
-            echo json_encode(array("cartnum" => 0));
         }
     }
 }
