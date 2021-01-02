@@ -433,8 +433,6 @@ input::-webkit-inner-spin-button {
 }
 
 .btn.focus {
-  color: #cdb75f;
+  background-color: #cdb75f;
   box-shadow: none;
-  -webkit-animation: anim-shadow 0.5s ease-in-out forwards;
-  animation: anim-shadow 0.5s ease-in-out forwards;
 }
