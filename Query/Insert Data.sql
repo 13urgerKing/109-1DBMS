@@ -6,7 +6,7 @@ VALUES('00002', 'seller@gamlab.com', 'seller', 'seller', '2021-01-01', '09123456
 INSERT INTO buyer
 VALUES('00001', 2000);
 INSERT INTO seller
-VALUES('00002', 5610);
+VALUES('00002', 852);
 INSERT INTO coupon
 VALUES('00001', '00001',150, True, '2021-02-01');
 INSERT INTO coupon

@@ -33,10 +33,9 @@ $(function () {
     }
     if (msg == "success") {
       alert("登入成功!");
-      if(userrole == "buyer"){
+      if (userrole == "buyer") {
         document.location.href = "./Home.html";
-      }
-      else{
+      } else {
         document.location.href = "./MyProduct.html";
       }
     } else {

@@ -10,6 +10,7 @@
 // </li>
 
 function createTopNavbar() {
+  var num = 0;
   var userrole;
   var userno;
   var navbarelm;
@@ -35,6 +36,16 @@ function createTopNavbar() {
     },
   });
   if (userrole == "buyer") {
+    $.ajax({
+      type: "POST",
+      async: false,
+      url: "../php/login.php",
+      dataType: "json",
+      data: { request: "getwallet" },
+      success: function (data) {
+        num = data.wallet;
+      },
+    });
     navbarelm = [
       "商店",
       "home.html",
@@ -42,20 +53,30 @@ function createTopNavbar() {
       "shoppingcart.html",
       "我的訂單",
       "orderrecord.html",
-      "錢包：",
+      "錢包：" + num.toString(),
       null,
       "登出",
       "#",
     ];
   } else if (userrole == "seller") {
+    $.ajax({
+      type: "POST",
+      async: false,
+      url: "../php/login.php",
+      dataType: "json",
+      data: { request: "getprofit" },
+      success: function (data) {
+        num = data.profit;
+      },
+    });
     navbarelm = [
       "我的商品",
-      "MyProduct.html",
-      "上架商品",
+      "myproduct.html",
+      "新增商品",
       "publish.html",
       "訂單處理",
-      "#",
-      "收益：",
+      "processorder.html",
+      "收益：" + num.toString(),
       null,
       "登出",
       "#",

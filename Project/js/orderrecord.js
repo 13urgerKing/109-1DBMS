@@ -60,13 +60,13 @@ $(function () {
     if (orderdata[i].Finished == 1) {
       var h31 = $("<h3/>", {
         class: "card-title",
-        style: "margin-bottom:0.75rem;Color:#00FF00;",
+        style: "Color:#00FF00;",
         text: "訂單編號：" + orderdata[i].Order_No,
       });
     } else {
       var h31 = $("<h3/>", {
         class: "card-title",
-        style: "margin-bottom:0.75rem;Color:#FF0000;",
+        style: "Color:#FF0000;",
         text: "訂單編號：" + orderdata[i].Order_No,
       });
     }
@@ -154,7 +154,6 @@ $(function () {
 
         var h51 = $("<h5/>", {
           class: "card-title",
-          style: "margin-bottom:0.75rem;",
           text: gamedata[i].Name,
         });
 

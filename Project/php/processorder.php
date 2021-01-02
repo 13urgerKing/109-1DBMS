@@ -2,10 +2,10 @@
 header('Content-Type: application/json; charset=UTF-8');
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $req = $_POST['request'];
-    if($req == 'getorderno') {
+    if ($req == 'getorderno') {
         $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
         $conn->set_charset("UTF8");
-        $result = $conn ->query("SELECT order_info.Finished,order_list.Order_No FROM order_list,order_info WHERE order_list.Order_No=order_info.Order_No GROUP by order_list.Order_No");
+        $result = $conn->query("SELECT order_info.Finished,order_list.Order_No FROM order_list,order_info WHERE order_list.Order_No=order_info.Order_No GROUP by order_list.Order_No");
         if ($result->num_rows > 0) {
             while (($row_result = $result->fetch_assoc()) !== null) {
                 $row[] = $row_result;
@@ -41,13 +41,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $conn->close();
         }
     }
-    if($req == 'updateorder') {
+    if ($req == 'updateorder') {
         $orderno = $_POST['orderno'];
         $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
         $conn->set_charset("UTF8");
         $conn->query("UPDATE order_info SET Finished = true WHERE order_info.Order_No = '$orderno'");
     }
-    if($req == 'getprofit') {
+    if ($req == 'getprofit') {
         $orderno = $_POST['orderno'];
         $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
         $conn->set_charset("UTF8");
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $conn->close();
         }
     }
-    if($req == 'updateprofit') {
+    if ($req == 'updateprofit') {
         $userno = $_POST['userno'];
         $profit = $_POST['profit'];
         $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
@@ -68,4 +68,3 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $conn->query("UPDATE seller SET Profit = Profit + $profit  WHERE seller.User_No = '$userno';");
     }
 }
-// UPDATE `order_info` SET `Finished` = '0' WHERE `order_info`.`Order_No` = '00003';

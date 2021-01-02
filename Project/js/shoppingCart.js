@@ -12,6 +12,8 @@ $(function () {
   var coupondata;
   var couponlistdiv;
   var total;
+  var couponid = null;
+  var amount = 0;
   var n = 0;
   $.ajax({
     type: "POST",
@@ -32,6 +34,17 @@ $(function () {
     success: function (data) {
       shoppingCartData = data.data;
       n = shoppingCartData.length;
+    },
+  });
+
+  $.ajax({
+    type: "POST",
+    async: false,
+    url: "../php/shoppingCart.php",
+    dataType: "json",
+    data: { request: "gettotal", userno: userno },
+    success: function (data) {
+      total = data.total;
     },
   });
 
@@ -72,7 +85,6 @@ $(function () {
 
     var h51 = $("<h5/>", {
       class: "card-title",
-      style: "margin-bottom:0.75rem;",
       text: shoppingCartData[i].Name,
     });
 
@@ -119,9 +131,11 @@ $(function () {
 
   for (var i = 0; i < n; i++) {
     var div1 = $("<div/>", {
+      name: "div-coupon",
+      id: coupondata[i].Coupon_No,
       class: "card my-3",
       style:
-        "border-style: none!important;color: #16202d!important;background-color: rgba(0,0,0,0)!important;",
+        "cursor: pointer;border-style: none!important;background-color: #16202d!important;",
     });
 
     var div2 = $("<div/>", {
@@ -148,7 +162,6 @@ $(function () {
 
     var h51 = $("<h5/>", {
       class: "card-title",
-      style: "margin-bottom:0.75rem;",
       text: "Coupon",
     });
 
@@ -175,8 +188,42 @@ $(function () {
 
   $("#content-coupon").append(couponlistdiv);
 
-  $("#btn-deletecart").on("click", function(){
-    n=0;
+  $("#payprice").text("付款金額：NT$" + total.toString());
+
+  $('[name="div-coupon"]').on("click", function () {
+    if ($(this).css("background-color") == "rgb(16, 24, 34)") {
+      $(this).css({ "background-color": "#16202d" });
+      couponid = null;
+      amount = 0;
+    } else {
+      couponid = $(this).attr("id");
+      $.ajax({
+        type: "POST",
+        async: false,
+        url: "../php/shoppingCart.php",
+        dataType: "json",
+        data: { request: "getcouponamount", couponid: couponid },
+        success: function (data) {
+          amount = data.amount;
+        },
+      });
+      if (amount > total) {
+        alert("使用優惠券後付款金額不可少於NT$0");
+        amount = 0;
+        couponid = null;
+      } else {
+        $('[name="div-coupon"]').each(function () {
+          $(this).css({ "background-color": "#16202d" });
+        });
+        $(this).css({ "background-color": "#101822" });
+      }
+    }
+    $("#payprice").text("付款金額：NT$" + (total - amount).toString());
+    $("#couponprice").text("優惠折抵：NT$" + amount.toString());
+  });
+
+  $("#btn-deletecart").on("click", function () {
+    n = 0;
     $.ajax({
       type: "POST",
       async: false,
@@ -188,7 +235,7 @@ $(function () {
         n = shoppingCartData.length;
       },
     });
-    if(n>0){
+    if (n > 0) {
       $.ajax({
         type: "POST",
         async: false,
@@ -197,14 +244,13 @@ $(function () {
         data: { request: "deleteshoppingcart", userno: userno },
       });
       window.location.reload();
-      alert("購物車已清空")
+      alert("購物車已清空");
+    } else {
+      alert("購物車是空的");
     }
-    else{
-      alert("購物車是空的")
-    }
-  })
-  $("#btn-purchasecart").on("click", function(){
-    n=0;
+  });
+  $("#btn-purchasecart").on("click", function () {
+    n = 0;
     $.ajax({
       type: "POST",
       async: false,
@@ -216,23 +262,28 @@ $(function () {
         n = shoppingCartData.length;
       },
     });
-    if(n>0){
+    if (n > 0) {
       $.ajax({
         type: "POST",
         async: false,
         url: "../php/shoppingCart.php",
         dataType: "json",
         data: { request: "gettotal", userno: userno },
-        success: function(data){
-          total=data.total;
-        }
+        success: function (data) {
+          total = data.total;
+        },
       });
       $.ajax({
         type: "POST",
         async: false,
         url: "../php/shoppingCart.php",
         dataType: "json",
-        data: { request: "purchaseshoppingcart", userno: userno, total:total },
+        data: {
+          request: "purchaseshoppingcart",
+          userno: userno,
+          total: total - amount,
+          couponid: couponid,
+        },
       });
       $.ajax({
         type: "POST",
@@ -241,13 +292,19 @@ $(function () {
         dataType: "json",
         data: { request: "deleteshoppingcart", userno: userno },
       });
+      $.ajax({
+        type: "POST",
+        async: false,
+        url: "../php/shoppingCart.php",
+        dataType: "json",
+        data: { request: "updatecoupon", couponid: couponid },
+      });
       window.location.reload();
-      alert("購買成功!")
+      alert("購買成功!");
+    } else {
+      alert("購物車是空的");
     }
-    else{
-      alert("購物車是空的")
-    }
-  })
+  });
 });
 
 /*  <div class="card mb-3">

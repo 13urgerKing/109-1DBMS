@@ -49,4 +49,30 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             echo json_encode(array('userno' => $_SESSION['userno']));
         }
     }
+    if ($req == 'getwallet') {
+        $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
+        $conn->set_charset("UTF8");
+
+        $result = $conn->query("SELECT Wallet FROM buyer WHERE User_No={$_SESSION['userno']}");
+        if ($result->num_rows > 0) {
+            while (($row_result = $result->fetch_assoc()) !== null) {
+                $row[] = $row_result;
+            }
+        }
+        $conn->close();
+        echo json_encode(array('wallet' => $row[0]["Wallet"]));
+    }
+    if ($req == 'getprofit') {
+        $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
+        $conn->set_charset("UTF8");
+
+        $result = $conn->query("SELECT Profit FROM seller WHERE User_No={$_SESSION['userno']}");
+        if ($result->num_rows > 0) {
+            while (($row_result = $result->fetch_assoc()) !== null) {
+                $row[] = $row_result;
+            }
+        }
+        $conn->close();
+        echo json_encode(array('profit' => $row[0]["Profit"]));
+    }
 }

@@ -80,7 +80,6 @@ function createContentHome() {
     div2.append(div3);
     div1.append(div2);
     $("#content-Home").append(div1);
-    
   }
 }
 $(function () {
@@ -127,10 +126,9 @@ $(function () {
           n = gamedata.length;
         },
       });
-      if($("#cartnum").length){
-        $("#cartnum").text(parseInt($("#cartnum").text())+1);
-      }
-      else{
+      if ($("#cartnum").length) {
+        $("#cartnum").text(parseInt($("#cartnum").text()) + 1);
+      } else {
         div = $("<div/>", {
           id: "cartnum",
           class: "toprightnumber",
