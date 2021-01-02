@@ -170,6 +170,8 @@ $(function () {
     var orderno = $(this).attr("id");
     var result;
     var profit = 0;
+    var sales;
+    var n = 0;
     $.ajax({
       type: "POST",
       async: false,
@@ -195,6 +197,26 @@ $(function () {
       dataType: "json",
       data: { request: "updateprofit", userno: userno, profit: profit },
     });
+    $.ajax({
+      type: "POST",
+      async: false,
+      url: "../php/processorder.php",
+      dataType: "json",
+      data: { request: "getsalesamount", orderno: orderno},
+      success: function(data){
+        sales = data.data;
+        n = sales.length;
+      }
+    });
+    for(i=0;i<n;i++){
+      $.ajax({
+        type: "POST",
+        async: false,
+        url: "../php/processorder.php",
+        dataType: "json",
+        data: { request: "updatesalesamount", gameno:sales[i].Game_No,amount:sales[i].Amount},
+      });
+    }
     window.location.reload();
   });
 });

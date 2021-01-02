@@ -67,4 +67,24 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $conn->set_charset("UTF8");
         $conn->query("UPDATE seller SET Profit = Profit + $profit  WHERE seller.User_No = '$userno';");
     }
+    if ($req == 'getsalesamount') {
+        $orderno = $_POST['orderno'];
+        $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
+        $conn->set_charset("UTF8");
+        $result = $conn->query("SELECT order_list.Game_No,COUNT(*) as Amount FROM order_list WHERE order_list.Order_No='$orderno' GROUP BY order_list.Game_No");
+        if ($result->num_rows > 0) {
+            while (($row_result = $result->fetch_assoc()) !== null) {
+                $row[] = $row_result;
+            }
+            echo json_encode(array("data" => $row));
+            $conn->close();
+        }
+    }
+    if ($req == 'updatesalesamount') {
+        $gameno = $_POST['gameno'];
+        $amount = $_POST['amount'];
+        $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
+        $conn->set_charset("UTF8");
+        $conn->query("UPDATE game SET Sales_volume = Sales_volume+$amount WHERE game.Game_No = '$gameno';");
+    }
 }
