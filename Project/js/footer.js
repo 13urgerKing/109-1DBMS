@@ -5,6 +5,7 @@
 // </footer>
 
 function createFooter() {
+  var pagename = window.location.pathname.split("/").pop().toLowerCase();
   if ($("#content").height() < $(window).height()) {
     $("body").css({ height: "100%" });
     $("#body").css({ height: "100%" });

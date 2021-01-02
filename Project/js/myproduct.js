@@ -28,7 +28,7 @@ $(function () {
     async: false,
     url: "../php/myproduct.php",
     dataType: "json",
-    data: { request: "getmyproduct", userno: userno },
+    data: { request: "getmyproduct" },
     success: function (data) {
       myProduct = data.data;
       n = myProduct.length;

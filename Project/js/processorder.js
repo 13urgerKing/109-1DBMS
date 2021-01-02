@@ -74,7 +74,6 @@ $(function () {
         data: {
           request: "processorder",
           orderno: orderno[i].Order_No,
-          userno: userno,
         },
         success: function (data) {
           processorder = data.data;
@@ -202,19 +201,23 @@ $(function () {
       async: false,
       url: "../php/processorder.php",
       dataType: "json",
-      data: { request: "getsalesamount", orderno: orderno},
-      success: function(data){
+      data: { request: "getsalesamount", orderno: orderno },
+      success: function (data) {
         sales = data.data;
         n = sales.length;
-      }
+      },
     });
-    for(i=0;i<n;i++){
+    for (i = 0; i < n; i++) {
       $.ajax({
         type: "POST",
         async: false,
         url: "../php/processorder.php",
         dataType: "json",
-        data: { request: "updatesalesamount", gameno:sales[i].Game_No,amount:sales[i].Amount},
+        data: {
+          request: "updatesalesamount",
+          gameno: sales[i].Game_No,
+          amount: sales[i].Amount,
+        },
       });
     }
     window.location.reload();

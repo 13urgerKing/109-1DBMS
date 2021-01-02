@@ -29,10 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
     if ($req == 'processorder') {
         $orderno = $_POST['orderno'];
-        $userno = $_POST['userno'];
         $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
         $conn->set_charset("UTF8");
-        $result = $conn->query("SELECT order_info.Date, order_info.Price as Order_Price, order_list.Game_No, game.Name,game.Description,game.ImageURL,game.Price FROM order_info, order_list, game WHERE order_list.Order_No='$orderno' AND order_info.Order_No=order_list.Order_No AND order_list.Game_No=game.Game_No AND game.Seller_No='$userno' GROUP by order_list.Game_No");
+        $result = $conn->query("SELECT order_info.Date, order_info.Price as Order_Price, order_list.Game_No, game.Name,game.Description,game.ImageURL,game.Price FROM order_info, order_list, game WHERE order_list.Order_No='$orderno' AND order_info.Order_No=order_list.Order_No AND order_list.Game_No=game.Game_No GROUP by order_list.Game_No");
         if ($result->num_rows > 0) {
             while (($row_result = $result->fetch_assoc()) !== null) {
                 $row[] = $row_result;

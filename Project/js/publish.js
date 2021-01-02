@@ -5,18 +5,6 @@ $(function () {
   var priceValidate = true;
   var descriptionValidate = true;
   var linkValidate = true;
-  var userno;
-
-  $.ajax({
-    type: "POST",
-    async: false,
-    url: "../php/login.php",
-    dataType: "json",
-    data: { request: "getuserno" },
-    success: function (data) {
-      userno = data.userno;
-    },
-  });
 
   $(".validate-form").on("submit", function () {
     var check = true;
@@ -35,7 +23,6 @@ $(function () {
         dataType: "json",
         data: {
           request: "publish",
-          userno: userno,
           name: $(input[0]).val(),
           price: $(input[1]).val(),
           category: $("input[type=radio][name=options]:checked").val(),

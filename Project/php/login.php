@@ -75,4 +75,29 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $conn->close();
         echo json_encode(array('profit' => $row[0]["Profit"]));
     }
+    if ($req == 'deposit') {
+        $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
+        $conn->set_charset("UTF8");
+
+        $result = $conn->query("SELECT Wallet FROM buyer WHERE User_No={$_SESSION['userno']}");
+        if ($result->num_rows > 0) {
+            while (($row_result = $result->fetch_assoc()) !== null) {
+                $row[] = $row_result;
+            }
+        }
+        $conn->close();
+        $wallet = $row[0]["Wallet"];
+        $value = $_POST['value'];
+        $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
+        $conn->set_charset("UTF8");
+
+        $result = $conn->query("UPDATE buyer SET Wallet = $wallet+$value WHERE User_No={$_SESSION['userno']}");
+    }
+    if ($req == 'updatewallet') {
+        $wallet = $_POST['wallet'];
+        $conn = mysqli_connect("localhost", "root", "root", "gamlabdb");
+        $conn->set_charset("UTF8");
+
+        $result = $conn->query("UPDATE buyer SET Wallet = $wallet WHERE User_No={$_SESSION['userno']}");
+    }
 }

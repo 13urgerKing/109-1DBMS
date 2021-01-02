@@ -111,6 +111,7 @@ $(function () {
 
   $("#content-shoppingCart").append(gamelistdiv);
 
+  n=0;
   $.ajax({
     type: "POST",
     async: false,
@@ -250,6 +251,7 @@ $(function () {
     }
   });
   $("#btn-purchasecart").on("click", function () {
+    var wallet = 0;
     n = 0;
     $.ajax({
       type: "POST",
@@ -266,6 +268,16 @@ $(function () {
       $.ajax({
         type: "POST",
         async: false,
+        url: "../php/login.php",
+        dataType: "json",
+        data: { request: "getwallet" },
+        success: function (data) {
+          wallet = data.wallet;
+        },
+      });
+      $.ajax({
+        type: "POST",
+        async: false,
         url: "../php/shoppingCart.php",
         dataType: "json",
         data: { request: "gettotal", userno: userno },
@@ -273,34 +285,46 @@ $(function () {
           total = data.total;
         },
       });
-      $.ajax({
-        type: "POST",
-        async: false,
-        url: "../php/shoppingCart.php",
-        dataType: "json",
-        data: {
-          request: "purchaseshoppingcart",
-          userno: userno,
-          total: total - amount,
-          couponid: couponid,
-        },
-      });
-      $.ajax({
-        type: "POST",
-        async: false,
-        url: "../php/shoppingCart.php",
-        dataType: "json",
-        data: { request: "deleteshoppingcart", userno: userno },
-      });
-      $.ajax({
-        type: "POST",
-        async: false,
-        url: "../php/shoppingCart.php",
-        dataType: "json",
-        data: { request: "updatecoupon", couponid: couponid },
-      });
-      window.location.reload();
-      alert("購買成功!");
+      if (wallet < total - amount) {
+        alert("錢包餘額不足");
+      } else {
+        $.ajax({
+          type: "POST",
+          async: false,
+          url: "../php/shoppingCart.php",
+          dataType: "json",
+          data: {
+            request: "purchaseshoppingcart",
+            userno: userno,
+            total: total - amount,
+            couponid: couponid,
+          },
+        });
+        $.ajax({
+          type: "POST",
+          async: false,
+          url: "../php/shoppingCart.php",
+          dataType: "json",
+          data: { request: "deleteshoppingcart", userno: userno },
+        });
+        $.ajax({
+          type: "POST",
+          async: false,
+          url: "../php/shoppingCart.php",
+          dataType: "json",
+          data: { request: "updatecoupon", couponid: couponid },
+        });
+        wallet = wallet - (total - amount);
+        $.ajax({
+          type: "POST",
+          async: false,
+          url: "../php/login.php",
+          dataType: "json",
+          data: { request: "updatewallet", wallet: wallet },
+        });
+        window.location.reload();
+        alert("購買成功!");
+      }
     } else {
       alert("購物車是空的");
     }

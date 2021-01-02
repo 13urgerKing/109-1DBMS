@@ -13,7 +13,7 @@
         </div>
     </div>
 </div> */
-function createContentHome() {
+function createContentHome(category) {
   var gamedata;
   var n = 0;
   $.ajax({
@@ -21,13 +21,13 @@ function createContentHome() {
     async: false,
     url: "../php/home.php",
     dataType: "json",
-    data: { request: "getgamedata" },
+    data: { request: "getgamedata", category: category },
     success: function (data) {
-      msg = data.msg;
       gamedata = data.data;
       n = gamedata.length;
     },
   });
+  $("#content-Home").empty();
   for (var i = 0; i < n; i++) {
     var div1 = $("<div/>", {
       class: "col-lg-4 col-md-6 mb-4",
@@ -83,7 +83,67 @@ function createContentHome() {
   }
 }
 $(function () {
-  createContentHome();
+  createContentHome("all");
+  $("#all").on("click", function () {
+    createContentHome("all");
+    if ($("#content-Home").height() > $(window).height()) {
+      if (typeof $("#content").attr("style") != typeof undefined) {
+        $("body").removeAttr("style");
+        $("#body").removeAttr("style");
+        $("#content").removeAttr("style");
+      }
+    }
+    if ($("#content-Home").height() < $(window).height()) {
+      $("body").css({ height: "100%" });
+      $("#body").css({ height: "100%" });
+      $("#content").css({ height: "100%" });
+    }
+  });
+  $("#single").on("click", function () {
+    createContentHome("single");
+    if ($("#content-Home").height() > $(window).height()) {
+      if (typeof $("#content").attr("style") != typeof undefined) {
+        $("body").removeAttr("style");
+        $("#body").removeAttr("style");
+        $("#content").removeAttr("style");
+      }
+    }
+    if ($("#content-Home").height() < $(window).height()) {
+      $("body").css({ height: "100%" });
+      $("#body").css({ height: "100%" });
+      $("#content").css({ height: "100%" });
+    }
+  });
+  $("#multi").on("click", function () {
+    createContentHome("multi");
+    if ($("#content-Home").height() > $(window).height()) {
+      if (typeof $("#content").attr("style") != typeof undefined) {
+        $("body").removeAttr("style");
+        $("#body").removeAttr("style");
+        $("#content").removeAttr("style");
+      }
+    }
+    if ($("#content-Home").height() < $(window).height()) {
+      $("body").css({ height: "100%" });
+      $("#body").css({ height: "100%" });
+      $("#content").css({ height: "100%" });
+    }
+  });
+  $("#battle").on("click", function () {
+    createContentHome("battle");
+    if ($("#content-Home").height() > $(window).height()) {
+      if (typeof $("#content").attr("style") != typeof undefined) {
+        $("body").removeAttr("style");
+        $("#body").removeAttr("style");
+        $("#content").removeAttr("style");
+      }
+    }
+    if ($("#content-Home").height() < $(window).height()) {
+      $("body").css({ height: "100%" });
+      $("#body").css({ height: "100%" });
+      $("#content").css({ height: "100%" });
+    }
+  });
   $('[name="addgametocart"]').on("click", function () {
     var userId;
     var userrole;
@@ -119,11 +179,6 @@ $(function () {
           request: "addtocart",
           userId: userId,
           gameId: $(this).attr("id"),
-        },
-        success: function (data) {
-          msg = data.msg;
-          gamedata = data.data;
-          n = gamedata.length;
         },
       });
       if ($("#cartnum").length) {
