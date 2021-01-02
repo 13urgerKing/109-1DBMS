@@ -35,7 +35,6 @@ CREATE TABLE Coupon (
 
 CREATE TABLE Game (
   Game_No varchar(5) NOT NULL,
-  Seller_No varchar(5) NOT NULL,
   Price INT NOT NULL,
   Sales_volume INT NOT NULL,
   Category varchar(10) NOT NULL,
@@ -59,14 +58,6 @@ CREATE TABLE Order_info (
 CREATE TABLE Order_list (
   Order_No varchar(5) NOT NULL,
   Game_No varchar(5) NOT NULL
-);
-
-CREATE TABLE User_Comment (
-  Comment_No varchar(5) NOT NULL,
-  Buyer_No varchar(5) NOT NULL,
-  Game_No varchar(5) NOT NULL,
-  Content varchar(500) NOT NULL,
-  PRIMARY KEY(Comment_No)
 );
 
 CREATE TABLE Shopping_Cart (
