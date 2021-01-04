@@ -140,7 +140,7 @@ $(function () {
 
         var img1 = $("<img/>", {
           src: gamedata[i].ImageURL,
-          class: "card-img w-100 h-100",
+          class: "card-img w-100",
         });
 
         var div4 = $("<div/>", {

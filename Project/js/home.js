@@ -84,6 +84,55 @@ function createContentHome(category) {
 }
 $(function () {
   createContentHome("all");
+  $(document).on("click",'[name="addgametocart"]', function () {
+    var userId;
+    var userrole;
+    $.ajax({
+      type: "POST",
+      async: false,
+      url: "../php/login.php",
+      dataType: "json",
+      data: { request: "getuserno" },
+      success: function (data) {
+        userId = data.userno;
+      },
+    });
+
+    $.ajax({
+      type: "POST",
+      async: false,
+      url: "../php/login.php",
+      dataType: "json",
+      data: { request: "checkuserrole" },
+      success: function (data) {
+        userrole = data.userrole;
+      },
+    });
+
+    if (userId != undefined && userrole == "buyer") {
+      $.ajax({
+        type: "POST",
+        async: false,
+        url: "../php/shoppingCart.php",
+        dataType: "json",
+        data: {
+          request: "addtocart",
+          userId: userId,
+          gameId: $(this).attr("id"),
+        },
+      });
+      if ($("#cartnum").length) {
+        $("#cartnum").text(parseInt($("#cartnum").text()) + 1);
+      } else {
+        div = $("<div/>", {
+          id: "cartnum",
+          class: "toprightnumber",
+          text: "1",
+        });
+        $("#navbar-shoppingcart").append(div);
+      }
+    }
+  });
   $("#all").on("click", function () {
     createContentHome("all");
     if ($("#content-Home").height() > $(window).height()) {
@@ -142,55 +191,6 @@ $(function () {
       $("body").css({ height: "100%" });
       $("#body").css({ height: "100%" });
       $("#content").css({ height: "100%" });
-    }
-  });
-  $('[name="addgametocart"]').on("click", function () {
-    var userId;
-    var userrole;
-    $.ajax({
-      type: "POST",
-      async: false,
-      url: "../php/login.php",
-      dataType: "json",
-      data: { request: "getuserno" },
-      success: function (data) {
-        userId = data.userno;
-      },
-    });
-
-    $.ajax({
-      type: "POST",
-      async: false,
-      url: "../php/login.php",
-      dataType: "json",
-      data: { request: "checkuserrole" },
-      success: function (data) {
-        userrole = data.userrole;
-      },
-    });
-
-    if (userId != undefined && userrole == "buyer") {
-      $.ajax({
-        type: "POST",
-        async: false,
-        url: "../php/shoppingCart.php",
-        dataType: "json",
-        data: {
-          request: "addtocart",
-          userId: userId,
-          gameId: $(this).attr("id"),
-        },
-      });
-      if ($("#cartnum").length) {
-        $("#cartnum").text(parseInt($("#cartnum").text()) + 1);
-      } else {
-        div = $("<div/>", {
-          id: "cartnum",
-          class: "toprightnumber",
-          text: "1",
-        });
-        $("#navbar-shoppingcart").append(div);
-      }
     }
   });
 });

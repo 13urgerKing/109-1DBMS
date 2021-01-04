@@ -78,7 +78,7 @@ function createTopNavbar() {
       "publish.html",
       "訂單處理",
       "processorder.html",
-      "收益：" + num.toString(),
+      "【收益：" + num.toString() + "】",
       null,
       "登出",
       "#",
