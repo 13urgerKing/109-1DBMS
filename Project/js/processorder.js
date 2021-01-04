@@ -127,7 +127,7 @@ $(function () {
         });
         var img1 = $("<img/>", {
           src: processorder[j].ImageURL,
-          class: "card-img w-100 h-100",
+          class: "card-img w-100",
         });
         var div6 = $("<div/>", {
           class: "col-md-8",
